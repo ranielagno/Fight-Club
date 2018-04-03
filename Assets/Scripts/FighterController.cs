@@ -6,9 +6,10 @@ public class FighterController : MonoBehaviour {
 
     public static bool mvBack = false;
     public static bool mvFwd = false;
+    public static bool isAttacking = false;
     public static FighterController instance;
+    static Animator anim;
     public Transform enemyTarget;
-    Animator anim;
 
     private void Awake() {
         if(instance == null) {
@@ -25,17 +26,46 @@ public class FighterController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        anim.ResetTrigger("wkBack");
-        anim.ResetTrigger("wkFwd");
-        anim.ResetTrigger("idle");
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("fight_idle")) {
+            isAttacking = false;
+        }
 
-        if (mvBack) {
-            anim.SetTrigger("wkBack");
-        } else if(mvFwd) {
-            anim.SetTrigger("wkFwd");
-        } else {
-            anim.SetTrigger("idle");
+        if (!isAttacking) { 
+            anim.ResetTrigger("wkBack");
+            anim.ResetTrigger("wkFwd");
+            anim.ResetTrigger("idle");
+
+            if (mvBack) {
+                anim.SetTrigger("wkBack");
+            } else if(mvFwd) {
+                anim.SetTrigger("wkFwd");
+            } else {
+                anim.SetTrigger("idle");
+            }
+
         }
 
     }
+
+    public void punch()
+    {
+        isAttacking = true;
+        anim.ResetTrigger("idle");
+        anim.SetTrigger("punch");
+    }
+
+    public void kick()
+    {
+        isAttacking = true;
+        anim.ResetTrigger("idle");
+        anim.SetTrigger("kick");
+    }
+
+    public void react()
+    {
+        isAttacking = true;
+        anim.ResetTrigger("idle");
+        anim.SetTrigger("react");
+    }
+
 }
