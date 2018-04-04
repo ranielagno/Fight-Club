@@ -10,6 +10,7 @@ public class FighterController : MonoBehaviour {
     public static FighterController instance;
     static Animator anim;
     public Transform enemyTarget;
+    public Vector3 direction;
 
     private void Awake() {
         if(instance == null) {
@@ -19,7 +20,6 @@ public class FighterController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
         anim = GetComponent<Animator>();
 	}
 	
@@ -28,6 +28,9 @@ public class FighterController : MonoBehaviour {
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("fight_idle")) {
             isAttacking = false;
+            direction = enemyTarget.position - this.transform.position;
+            direction.y = 0;
+            this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), 0.3f);
         }
 
         if (!isAttacking) { 
