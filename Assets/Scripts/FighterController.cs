@@ -11,6 +11,7 @@ public class FighterController : MonoBehaviour {
     static Animator anim;
     public Transform enemyTarget;
     public Vector3 direction;
+    public int health = 100;
 
     private void Awake() {
         if(instance == null) {
@@ -69,6 +70,7 @@ public class FighterController : MonoBehaviour {
         isAttacking = true;
         anim.ResetTrigger("idle");
         anim.SetTrigger("react");
+        health = health - 10;
     }
 
 }

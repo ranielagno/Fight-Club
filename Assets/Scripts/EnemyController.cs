@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
+    public static EnemyController instance;
     public Transform playerTransform;
     private Vector3 direction;
     static Animator anim;
+    public int enemyHealth = 100;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+    // Use this for initialization
+    void Start () {
         anim = GetComponent<Animator>();
 	}
 	
@@ -22,5 +31,12 @@ public class EnemyController : MonoBehaviour {
             direction.y = 0;
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), 0.3f);
         }
+    }
+
+    public void EnemyReact()
+    {
+        enemyHealth = enemyHealth - 10;
+        anim.ResetTrigger("idle");
+        anim.SetTrigger("react");
     }
 }
