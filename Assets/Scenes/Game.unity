@@ -3194,8 +3194,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 403128161}
-        m_MethodName: LoadMenuScene
+      - m_Target: {fileID: 287837167}
+        m_MethodName: BackToMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6204,6 +6204,10 @@ Prefab:
       propertyPath: options.Array.data[3].m_Object
       value: 
       objectReference: {fileID: 809425347}
+    - target: {fileID: 1369771806640168, guid: 0c9cd772ab11d4409bfeb214f69c0dbc, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114347538797645292, guid: 0c9cd772ab11d4409bfeb214f69c0dbc, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 0c9cd772ab11d4409bfeb214f69c0dbc, type: 2}

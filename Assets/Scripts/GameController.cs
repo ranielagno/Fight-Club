@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Vuforia;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
@@ -150,6 +150,16 @@ public class GameController : MonoBehaviour {
         playerScore = 0;
         enemyScore = 0;
         StartCoroutine(RestartGame());
+    }
+
+    public void BackToMenu()
+    {
+        Invoke("LoadMenuScene", 1f);
+    }
+
+    public void LoadMenuScene()
+    {
+        SceneManager.LoadScene(0);
     }
 
     private IEnumerator RestartGame()
