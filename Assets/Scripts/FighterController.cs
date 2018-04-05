@@ -18,6 +18,8 @@ public class FighterController : MonoBehaviour {
     public AudioClip[] audioClips;
     AudioSource audioSource;
 
+    private Vector3 playerPosition;
+
     private void Awake() {
         if(instance == null) {
             instance = this;
@@ -27,6 +29,7 @@ public class FighterController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
+        playerPosition = transform.position;
         audioSource = GetComponent<AudioSource>();
         SetAllBoxColliders(false);
 	}
@@ -42,21 +45,23 @@ public class FighterController : MonoBehaviour {
             
         }
 
-        if (!isAttacking) { 
+        if (!isAttacking && GameController.allowMovement) { 
             anim.ResetTrigger("wkBack");
             anim.ResetTrigger("wkFwd");
             anim.ResetTrigger("idle");
-            SetAllBoxColliders(false);
+            
 
             if (mvBack) {
                 anim.SetTrigger("wkBack");
+                SetAllBoxColliders(false);
             } else if(mvFwd) {
                 anim.SetTrigger("wkFwd");
+                SetAllBoxColliders(false);
             } else {
                 anim.SetTrigger("idle");
             }
 
-        } else
+        } else if(isAttacking)
         {
             SetAllBoxColliders(true);
         }
@@ -113,5 +118,33 @@ public class FighterController : MonoBehaviour {
     {
         anim.SetTrigger("knockout");
         PlayAudio(3);
+        health = 100;
+        playerHealthBar.value = 100;
+        GameController.instance.scoreEnemy();
+        GameController.instance.OnScreenPoints();
+        GameController.instance.rounds();
+        GameController.allowMovement = false;
+
+        if (GameController.enemyScore == 2)
+        {
+            GameController.instance.DoReset();
+        }
+        else
+        {
+            StartCoroutine(ResetCharacters());
+        }
+    }
+
+    IEnumerator ResetCharacters()
+    {
+        yield return new WaitForSeconds(4f);
+        GameObject[] theClone = GameObject.FindGameObjectsWithTag("Player");
+        Transform transform = theClone[5].GetComponent<Transform>();
+        transform.position = playerPosition;
+        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        anim.SetTrigger("idle");
+        anim.ResetTrigger("knockout");
+        GameController.allowMovement = true;
     }
 }
+

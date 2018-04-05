@@ -17,6 +17,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
     #region PROTECTED_MEMBER_VARIABLES
 
     protected TrackableBehaviour mTrackableBehaviour;
+    public static bool trueFalse = false;
 
     #endregion // PROTECTED_MEMBER_VARIABLES
 
@@ -90,6 +91,8 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         // Enable canvas':
         foreach (var component in canvasComponents)
             component.enabled = true;
+        trueFalse = true;
+
     }
 
 
