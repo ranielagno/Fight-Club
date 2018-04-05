@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour {
 
@@ -9,6 +10,7 @@ public class EnemyController : MonoBehaviour {
     private Vector3 direction;
     static Animator anim;
     public int enemyHealth = 100;
+    public Slider enemyHealthBar;
 
     private void Awake()
     {
@@ -36,7 +38,21 @@ public class EnemyController : MonoBehaviour {
     public void EnemyReact()
     {
         enemyHealth = enemyHealth - 10;
-        anim.ResetTrigger("idle");
-        anim.SetTrigger("react");
+        enemyHealthBar.value = enemyHealth;
+
+        if (enemyHealth < 10)
+        {
+            EnemyKnockout();
+        } else
+        {
+            anim.ResetTrigger("idle");
+            anim.SetTrigger("react");
+        }
+        
+    }
+
+    public void EnemyKnockout()
+    {
+        anim.SetTrigger("knockout");
     }
 }
