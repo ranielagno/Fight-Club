@@ -73,7 +73,19 @@ public class FighterController : MonoBehaviour {
         anim.ResetTrigger("idle");
         anim.SetTrigger("react");
         health = health - 10;
+        if (health < 10)
+        {
+            knockout();
+        } else
+        {
+            anim.ResetTrigger("idle");
+            anim.SetTrigger("react");
+        }
         playerHealthBar.value = health;
     }
 
+    public void knockout()
+    {
+        anim.SetTrigger("knockout");
+    }
 }

@@ -6,8 +6,8 @@ public class PlayerCollision : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
-        {
+        if (other.tag == "Enemy") {
+            FighterController.instance.react();
             Debug.Log("HIT Enemy");
         }
     }
