@@ -36,21 +36,39 @@ public class EnemyController : MonoBehaviour {
 
         Debug.Log(direction.magnitude);
 
-        
-        if (direction.magnitude > 12f && GameController.allowMovement == true)
+        if(GameController.allowMovement == false)
         {
-            anim.SetTrigger("walkFWD");
-        } else {
-            anim.ResetTrigger("walkFWD");
-        }
+            /*
+            if (direction.magnitude > 12f)
+            {
+                anim.SetTrigger("walkFWD");
+            }
+            else
+            {
+                anim.ResetTrigger("walkFWD");
+            }
+            */
 
-        if (direction.magnitude < 12f && GameController.allowMovement == true) {
-            anim.SetTrigger("kick");
-        } else
-        {
-            anim.SetTrigger( "kick");
+            if (direction.magnitude < 12f && direction.magnitude > 8f)
+            {
+                anim.SetTrigger("kick");
+            }
+            else
+            {
+                anim.ResetTrigger("kick");
+            }
+
+            if (direction.magnitude <= 8f)
+            {
+                anim.SetTrigger("punch");
+            }
+            else
+            {
+                anim.ResetTrigger("punch");
+            }
         }
         
+
     }
 
     public void EnemyReact()

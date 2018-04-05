@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
 
     public static GameController instance;
-    public static bool allowMovement = true;
+    public static bool allowMovement = false;
 
     void Awake()
     {
