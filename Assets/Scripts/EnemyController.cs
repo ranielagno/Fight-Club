@@ -12,6 +12,8 @@ public class EnemyController : MonoBehaviour {
     public int enemyHealth = 100;
     public Slider enemyHealthBar;
     public BoxCollider[] colliders;
+    public AudioClip[] audioClips;
+    AudioSource audioSource;
 
     private void Awake()
     {
@@ -55,8 +57,12 @@ public class EnemyController : MonoBehaviour {
 
             if (direction.magnitude < 13f && direction.magnitude > 7f)
             {
-                anim.SetTrigger("kick");
                 SetAllBoxColliders(true);
+                if (!audioSource.isPlaying && !anim.GetCurrentAnimatorStateInfo(0).IsName("roundhouse_kick 2"))
+                {
+                    PlayAudio(1);
+                    anim.SetTrigger("kick");
+                }
             }
             else
             {
@@ -65,8 +71,12 @@ public class EnemyController : MonoBehaviour {
 
             if (direction.magnitude <= 7f)
             {
-                anim.SetTrigger("punch");
                 SetAllBoxColliders(true);
+                if (!audioSource.isPlaying && !anim.GetCurrentAnimatorStateInfo(0).IsName("cross_punch"))
+                {
+                    PlayAudio(0);
+                    anim.SetTrigger("punch");
+                }
             }
             else
             {
@@ -75,12 +85,13 @@ public class EnemyController : MonoBehaviour {
 
             if (direction.magnitude > 0f && direction.magnitude < 2f)
             {
-                anim.SetTrigger("walkFWD");
+                anim.SetTrigger("walkBack");
                 SetAllBoxColliders(false);
+                audioSource.Stop();
             }
             else
             {
-                anim.ResetTrigger("walkFWD");
+                anim.ResetTrigger("walkBack");
             }
         }
         
@@ -91,6 +102,12 @@ public class EnemyController : MonoBehaviour {
     {
         colliders[0].enabled = state;
         colliders[1].enabled = state;
+    }
+
+    public void PlayAudio(int clip)
+    {
+        audioSource.clip = audioClips[clip];
+        audioSource.Play();
     }
 
     public void EnemyReact()
@@ -112,5 +129,6 @@ public class EnemyController : MonoBehaviour {
     public void EnemyKnockout()
     {
         anim.SetTrigger("knockout");
+        PlayAudio(3);
     }
 }

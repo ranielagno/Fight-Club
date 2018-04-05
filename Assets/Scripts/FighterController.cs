@@ -15,6 +15,8 @@ public class FighterController : MonoBehaviour {
     public int health = 100;
     public Slider playerHealthBar;
     public BoxCollider[] colliders;
+    public AudioClip[] audioClips;
+    AudioSource audioSource;
 
     private void Awake() {
         if(instance == null) {
@@ -25,6 +27,7 @@ public class FighterController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         SetAllBoxColliders(false);
 	}
 	
@@ -66,11 +69,18 @@ public class FighterController : MonoBehaviour {
         colliders[1].enabled = state;
     }
 
+    public void PlayAudio(int clip)
+    {
+        audioSource.clip = audioClips[clip];
+        audioSource.Play();
+    }
+
     public void punch()
     {
         isAttacking = true;
         anim.ResetTrigger("idle");
         anim.SetTrigger("punch");
+        PlayAudio(0);
     }
 
     public void kick()
@@ -78,6 +88,7 @@ public class FighterController : MonoBehaviour {
         isAttacking = true;
         anim.ResetTrigger("idle");
         anim.SetTrigger("kick");
+        PlayAudio(1);
     }
 
     public void react()
@@ -93,6 +104,7 @@ public class FighterController : MonoBehaviour {
         {
             anim.ResetTrigger("idle");
             anim.SetTrigger("react");
+            PlayAudio(2);
         }
         playerHealthBar.value = health;
     }
@@ -100,5 +112,6 @@ public class FighterController : MonoBehaviour {
     public void knockout()
     {
         anim.SetTrigger("knockout");
+        PlayAudio(3);
     }
 }

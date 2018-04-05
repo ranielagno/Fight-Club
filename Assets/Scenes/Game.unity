@@ -1020,6 +1020,7 @@ GameObject:
   - component: {fileID: 422657779}
   - component: {fileID: 422657778}
   - component: {fileID: 422657777}
+  - component: {fileID: 422657782}
   m_Layer: 0
   m_Name: ARCamera
   m_TagString: Untagged
@@ -1108,6 +1109,86 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!82 &422657782
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 422657776}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 2ac2d3a5c5922483981eb345ded254ec, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &536814969 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100002, guid: 1473a6cdb4209484ba419a3ac2d87be8, type: 3}
@@ -1127,6 +1208,7 @@ MonoBehaviour:
   enemyHealth: 100
   enemyHealthBar: {fileID: 169059907}
   colliders: []
+  audioClips: []
 --- !u!1 &540985104
 GameObject:
   m_ObjectHideFlags: 0
@@ -1398,6 +1480,11 @@ MonoBehaviour:
   colliders:
   - {fileID: 548866619}
   - {fileID: 548866624}
+  audioClips:
+  - {fileID: 8300000, guid: 43384997a431a461b8180ee1decb7575, type: 3}
+  - {fileID: 8300000, guid: a2cae99168ce849b092d8a51fefb8de8, type: 3}
+  - {fileID: 8300000, guid: ba0a0baba0ed341978f2e05a56233d32, type: 3}
+  - {fileID: 8300000, guid: 4c4cbb4115ebb402697dd48916207b87, type: 3}
 --- !u!1 &577944783
 GameObject:
   m_ObjectHideFlags: 0
@@ -4143,6 +4230,7 @@ MonoBehaviour:
   health: 100
   playerHealthBar: {fileID: 1672635775}
   colliders: []
+  audioClips: []
 --- !u!1 &1166513207
 GameObject:
   m_ObjectHideFlags: 0
@@ -4925,6 +5013,11 @@ MonoBehaviour:
   colliders:
   - {fileID: 1692708106}
   - {fileID: 1692708108}
+  audioClips:
+  - {fileID: 8300000, guid: 4e7a1f99f79cb456ea61ddb65a0dfc02, type: 3}
+  - {fileID: 8300000, guid: be7f7e3387064437ea1cf1fd4e061cfb, type: 3}
+  - {fileID: 8300000, guid: 43060c6d27a4d488094aa64eebb07c56, type: 3}
+  - {fileID: 8300000, guid: cd83680f6b4f24984a0b7b5d30be6395, type: 3}
 --- !u!114 &1692708110
 MonoBehaviour:
   m_ObjectHideFlags: 0
