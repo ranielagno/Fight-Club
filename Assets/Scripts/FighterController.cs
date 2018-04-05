@@ -14,6 +14,7 @@ public class FighterController : MonoBehaviour {
     public Vector3 direction;
     public int health = 100;
     public Slider playerHealthBar;
+    public BoxCollider[] colliders;
 
     private void Awake() {
         if(instance == null) {
@@ -24,6 +25,7 @@ public class FighterController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
+        SetAllBoxColliders(false);
 	}
 	
 	// Update is called once per frame
@@ -34,12 +36,14 @@ public class FighterController : MonoBehaviour {
             direction = enemyTarget.position - this.transform.position;
             direction.y = 0;
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), 0.3f);
+            
         }
 
         if (!isAttacking) { 
             anim.ResetTrigger("wkBack");
             anim.ResetTrigger("wkFwd");
             anim.ResetTrigger("idle");
+            SetAllBoxColliders(false);
 
             if (mvBack) {
                 anim.SetTrigger("wkBack");
@@ -49,8 +53,17 @@ public class FighterController : MonoBehaviour {
                 anim.SetTrigger("idle");
             }
 
+        } else
+        {
+            SetAllBoxColliders(true);
         }
 
+    }
+
+    private void SetAllBoxColliders(bool state)
+    {
+        colliders[0].enabled = state;
+        colliders[1].enabled = state;
     }
 
     public void punch()

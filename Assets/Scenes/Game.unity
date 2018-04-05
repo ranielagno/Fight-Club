@@ -1126,6 +1126,7 @@ MonoBehaviour:
   playerTransform: {fileID: 932767117}
   enemyHealth: 100
   enemyHealthBar: {fileID: 169059907}
+  colliders: []
 --- !u!1 &540985104
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,7 +1204,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 472e8d1a7e59be14fa1d332de05d47fc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.759
+      value: -0.709
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 472e8d1a7e59be14fa1d332de05d47fc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1309,8 +1310,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.41, y: 0.19, z: 0.19}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.35, y: 0.19, z: 0.16}
+  m_Center: {x: 0.06, y: 0, z: 0}
 --- !u!114 &548866620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1347,8 +1348,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.24, z: 0.27}
-  m_Center: {x: 0, y: 0.1, z: 0}
+  m_Size: {x: 0.31, y: 0.54, z: 0.36}
+  m_Center: {x: 0, y: -0.03, z: 0}
 --- !u!54 &548866623
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1374,8 +1375,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.17, y: 0.17, z: 0.38}
-  m_Center: {x: 0, y: -0.03, z: 0.11}
+  m_Size: {x: 0.17, y: 0.18, z: 0.36}
+  m_Center: {x: 0.04, y: -0.03, z: 0.11}
 --- !u!1 &548866625 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 472e8d1a7e59be14fa1d332de05d47fc, type: 3}
@@ -1394,6 +1395,9 @@ MonoBehaviour:
   playerTransform: {fileID: 1692708098}
   enemyHealth: 100
   enemyHealthBar: {fileID: 169059907}
+  colliders:
+  - {fileID: 548866619}
+  - {fileID: 548866624}
 --- !u!1 &577944783
 GameObject:
   m_ObjectHideFlags: 0
@@ -4138,6 +4142,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   health: 100
   playerHealthBar: {fileID: 1672635775}
+  colliders: []
 --- !u!1 &1166513207
 GameObject:
   m_ObjectHideFlags: 0
@@ -4720,7 +4725,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400066, guid: 33b257f607d05774c890df37fdc0effa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.601
+      value: 0.715
       objectReference: {fileID: 0}
     - target: {fileID: 400066, guid: 33b257f607d05774c890df37fdc0effa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4846,8 +4851,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.22, y: 0.24, z: 0.31}
-  m_Center: {x: 0, y: 0.09, z: 0}
+  m_Size: {x: 0.32, y: 0.51, z: 0.31}
+  m_Center: {x: 0, y: -0.03, z: 0}
 --- !u!54 &1692708105
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4873,7 +4878,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.19, z: 0.19}
+  m_Size: {x: 0.29, y: 0.12, z: 0.16}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1692708107
 Rigidbody:
@@ -4900,7 +4905,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.14, z: 0.37}
+  m_Size: {x: 0.22, y: 0.23, z: 0.43}
   m_Center: {x: 0.03, y: -0.06, z: 0.09}
 --- !u!114 &1692708109
 MonoBehaviour:
@@ -4917,6 +4922,9 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   health: 100
   playerHealthBar: {fileID: 1672635775}
+  colliders:
+  - {fileID: 1692708106}
+  - {fileID: 1692708108}
 --- !u!114 &1692708110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4928,6 +4936,86 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19172c03e2f1db740ae78c994809f41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &1692708111
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1692708102}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &1733257687
 GameObject:
   m_ObjectHideFlags: 0

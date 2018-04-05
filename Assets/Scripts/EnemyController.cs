@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour {
     static Animator anim;
     public int enemyHealth = 100;
     public Slider enemyHealthBar;
+    public BoxCollider[] colliders;
 
     private void Awake()
     {
@@ -22,7 +23,8 @@ public class EnemyController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
-	}
+        SetAllBoxColliders(false);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -32,6 +34,7 @@ public class EnemyController : MonoBehaviour {
             direction = playerTransform.position - this.transform.position;
             direction.y = 0;
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), 0.3f);
+            SetAllBoxColliders(false);
         }
 
         Debug.Log(direction.magnitude);
@@ -39,9 +42,10 @@ public class EnemyController : MonoBehaviour {
         if(GameController.allowMovement == false)
         {
             /*
-            if (direction.magnitude > 12f)
+            if (direction.magnitude > 13f)
             {
                 anim.SetTrigger("walkFWD");
+                SetAllBoxColliders(false);
             }
             else
             {
@@ -49,26 +53,44 @@ public class EnemyController : MonoBehaviour {
             }
             */
 
-            if (direction.magnitude < 12f && direction.magnitude > 8f)
+            if (direction.magnitude < 13f && direction.magnitude > 7f)
             {
                 anim.SetTrigger("kick");
+                SetAllBoxColliders(true);
             }
             else
             {
                 anim.ResetTrigger("kick");
             }
 
-            if (direction.magnitude <= 8f)
+            if (direction.magnitude <= 7f)
             {
                 anim.SetTrigger("punch");
+                SetAllBoxColliders(true);
             }
             else
             {
                 anim.ResetTrigger("punch");
             }
+
+            if (direction.magnitude > 0f && direction.magnitude < 2f)
+            {
+                anim.SetTrigger("walkFWD");
+                SetAllBoxColliders(false);
+            }
+            else
+            {
+                anim.ResetTrigger("walkFWD");
+            }
         }
         
 
+    }
+
+    private void SetAllBoxColliders(bool state)
+    {
+        colliders[0].enabled = state;
+        colliders[1].enabled = state;
     }
 
     public void EnemyReact()
