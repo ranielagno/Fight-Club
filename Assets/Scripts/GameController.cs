@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour {
     public GameObject fwdButton;
     public GameObject punchButton;
     public GameObject kickButton;
+    public GameObject qualityMeter;
     public GameObject[] points;
 
     public AudioClip[] audioClips;
@@ -47,6 +48,7 @@ public class GameController : MonoBehaviour {
             if(DefaultTrackableEventHandler.trueFalse == true)
             {
                 cameraButton.SetActive(false);
+                qualityMeter.SetActive(false);
                 playerScoreOnScreen.SetActive(true);
                 enemyScoreOnScreen.SetActive(true);
                 backButton.SetActive(true);
@@ -130,6 +132,21 @@ public class GameController : MonoBehaviour {
 
     public void DoReset()
     {
+        if(playerScore == 2)
+        {
+            PlayAudioTrack(6);
+        }
+        else
+        {
+            PlayAudioTrack(5);
+        }
+
+        FighterController.instance.playerHealthBar.value = 100;
+        FighterController.instance.health = 100;
+
+        EnemyController.instance.enemyHealthBar.value = 100;
+        EnemyController.instance.enemyHealth = 100;
+
         playerScore = 0;
         enemyScore = 0;
         StartCoroutine(RestartGame());

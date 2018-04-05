@@ -44,7 +44,7 @@ public class EnemyController : MonoBehaviour {
             SetAllBoxColliders(false);
         }
 
-        Debug.Log(direction.magnitude);
+        //Debug.Log(direction.magnitude);
 
         if(GameController.allowMovement)
         {
@@ -74,7 +74,7 @@ public class EnemyController : MonoBehaviour {
                 anim.ResetTrigger("kick");
             }
 
-            if (direction.magnitude <= 7f && direction.magnitude >= 2f)
+            if (direction.magnitude <= 7f && direction.magnitude >= 4f)
             {
                 SetAllBoxColliders(true);
                 if (!audioSource.isPlaying && !anim.GetCurrentAnimatorStateInfo(0).IsName("cross_punch"))
@@ -88,7 +88,7 @@ public class EnemyController : MonoBehaviour {
                 anim.ResetTrigger("punch");
             }
 
-            if (direction.magnitude > 0f && direction.magnitude < 2f)
+            if (direction.magnitude > 0f && direction.magnitude < 4f)
             {
                 anim.SetTrigger("walkBack");
                 SetAllBoxColliders(false);
@@ -125,7 +125,6 @@ public class EnemyController : MonoBehaviour {
             EnemyKnockout();
         } else
         {
-            anim.ResetTrigger("idle");
             anim.SetTrigger("react");
             PlayAudio(2);
         }
@@ -137,7 +136,6 @@ public class EnemyController : MonoBehaviour {
         anim.SetTrigger("knockout");
         PlayAudio(3);
         enemyHealth = 100;
-        enemyHealthBar.value = 100;
         GameController.allowMovement = false;
         GameController.instance.scorePlayer();
         GameController.instance.OnScreenPoints();
@@ -155,8 +153,9 @@ public class EnemyController : MonoBehaviour {
     IEnumerator ResetCharacters()
     {
         yield return new WaitForSeconds(4f);
+        enemyHealthBar.value = 100;
         GameObject[] theClone = GameObject.FindGameObjectsWithTag("Enemy");
-        Transform transform = theClone[1].GetComponent<Transform>();
+        Transform transform = theClone[3].GetComponent<Transform>();
         transform.position = enemyPosition;
         transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         GameController.allowMovement = true;

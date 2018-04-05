@@ -29,8 +29,9 @@ public class FighterController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
-        playerPosition = transform.position;
         audioSource = GetComponent<AudioSource>();
+        Debug.Log(audioClips.Length);
+        playerPosition = transform.position;
         SetAllBoxColliders(false);
 	}
 	
@@ -119,7 +120,6 @@ public class FighterController : MonoBehaviour {
         anim.SetTrigger("knockout");
         PlayAudio(3);
         health = 100;
-        playerHealthBar.value = 100;
         GameController.instance.scoreEnemy();
         GameController.instance.OnScreenPoints();
         GameController.instance.rounds();
@@ -129,15 +129,14 @@ public class FighterController : MonoBehaviour {
         {
             GameController.instance.DoReset();
         }
-        else
-        {
-            StartCoroutine(ResetCharacters());
-        }
+
+        StartCoroutine(ResetCharacters());
     }
 
     IEnumerator ResetCharacters()
     {
         yield return new WaitForSeconds(4f);
+        playerHealthBar.value = 100;
         GameObject[] theClone = GameObject.FindGameObjectsWithTag("Player");
         Transform transform = theClone[5].GetComponent<Transform>();
         transform.position = playerPosition;
