@@ -43,7 +43,7 @@ public class FighterController : MonoBehaviour {
             direction = enemyTarget.position - this.transform.position;
             direction.y = 0;
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), 0.3f);
-            
+            SetAllBoxColliders(false);
         }
 
         if (!isAttacking && GameController.allowMovement) { 
@@ -138,9 +138,13 @@ public class FighterController : MonoBehaviour {
         yield return new WaitForSeconds(4f);
         playerHealthBar.value = 100;
         GameObject[] theClone = GameObject.FindGameObjectsWithTag("Player");
-        Transform transform = theClone[5].GetComponent<Transform>();
+        Transform transform = theClone[2].GetComponent<Transform>();
+        Debug.Log(theClone[0]);
+        Debug.Log(theClone[1]);
+        Debug.Log(theClone[2]);
+        Debug.Log(theClone[3]);
         transform.position = playerPosition;
-        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
         anim.SetTrigger("idle");
         anim.ResetTrigger("knockout");
         GameController.allowMovement = true;

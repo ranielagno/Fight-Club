@@ -49,7 +49,7 @@ public class EnemyController : MonoBehaviour {
         if(GameController.allowMovement)
         {
             
-            if (direction.magnitude > 13f)
+            if (direction.magnitude > 4f)
             {
                 anim.SetTrigger("walkFWD");
                 SetAllBoxColliders(false);
@@ -60,7 +60,7 @@ public class EnemyController : MonoBehaviour {
             }
             
 
-            if (direction.magnitude < 14f && direction.magnitude > 7f)
+            if (direction.magnitude < 5f && direction.magnitude > 2f)
             {
                 SetAllBoxColliders(true);
                 if (!audioSource.isPlaying && !anim.GetCurrentAnimatorStateInfo(0).IsName("roundhouse_kick 2"))
@@ -74,7 +74,7 @@ public class EnemyController : MonoBehaviour {
                 anim.ResetTrigger("kick");
             }
 
-            if (direction.magnitude <= 7f && direction.magnitude >= 4f)
+            if (direction.magnitude <= 2f && direction.magnitude >= 1f)
             {
                 SetAllBoxColliders(true);
                 if (!audioSource.isPlaying && !anim.GetCurrentAnimatorStateInfo(0).IsName("cross_punch"))
@@ -88,7 +88,7 @@ public class EnemyController : MonoBehaviour {
                 anim.ResetTrigger("punch");
             }
 
-            if (direction.magnitude > 0f && direction.magnitude < 4f)
+            if (direction.magnitude > 0f && direction.magnitude < 1f)
             {
                 anim.SetTrigger("walkBack");
                 SetAllBoxColliders(false);
@@ -155,9 +155,9 @@ public class EnemyController : MonoBehaviour {
         yield return new WaitForSeconds(4f);
         enemyHealthBar.value = 100;
         GameObject[] theClone = GameObject.FindGameObjectsWithTag("Enemy");
-        Transform transform = theClone[3].GetComponent<Transform>();
+        Transform transform = theClone[2].GetComponent<Transform>();
         transform.position = enemyPosition;
-        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
         GameController.allowMovement = true;
     }
 }

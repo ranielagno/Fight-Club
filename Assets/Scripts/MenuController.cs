@@ -17,6 +17,7 @@ public class MenuController : MonoBehaviour {
 
     public void StartGame()
     {
+        Debug.Log("START GAME");
         Invoke("LoadGameScene", 0.5f);
     }
 
