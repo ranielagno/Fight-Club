@@ -73,7 +73,7 @@ public class GameController : MonoBehaviour {
 
     IEnumerator PrepareYourself()
     {
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1.5f);
         PlayAudioTrack(1);
         StartCoroutine(Start321());
     }
