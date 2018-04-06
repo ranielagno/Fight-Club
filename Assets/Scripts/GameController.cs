@@ -154,7 +154,7 @@ public class GameController : MonoBehaviour {
 
     public void BackToMenu()
     {
-        Invoke("LoadMenuScene", 1f);
+        Invoke("LoadMenuScene", 0.5f);
     }
 
     public void LoadMenuScene()
