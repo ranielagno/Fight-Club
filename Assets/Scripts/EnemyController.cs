@@ -16,7 +16,8 @@ public class EnemyController : MonoBehaviour {
     public AudioClip[] audioClips;
     AudioSource audioSource;
 
-    private Vector3 enemyPosition;
+    private Vector3 spawnPosition;
+    private Quaternion spawnRotation;
 
     private void Awake()
     {
@@ -24,12 +25,13 @@ public class EnemyController : MonoBehaviour {
         {
             instance = this;
         }
+        spawnPosition = transform.position;
+        spawnRotation = transform.rotation;
     }
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        enemyPosition = transform.position;
         SetAllBoxColliders(false);
     }
 	
@@ -156,8 +158,8 @@ public class EnemyController : MonoBehaviour {
         enemyHealthBar.value = 100;
         GameObject[] theClone = GameObject.FindGameObjectsWithTag("Enemy");
         Transform transform = theClone[2].GetComponent<Transform>();
-        transform.position = enemyPosition;
-        transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+        transform.position = spawnPosition;
+        transform.rotation = spawnRotation;
         GameController.allowMovement = true;
     }
 }

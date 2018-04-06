@@ -33,13 +33,15 @@ public class GameController : MonoBehaviour {
         {
             instance = this;
         }
+        
     }
 
 
 	// Use this for initialization
 	void Start () {
         audioSource = GetComponent<AudioSource>();
-	}
+        DefaultTrackableEventHandler.trueFalse = false;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -56,7 +58,7 @@ public class GameController : MonoBehaviour {
                 punchButton.SetActive(true);
                 kickButton.SetActive(true);
                 onGame = true;
-
+                allowMovement = false;
                 StartCoroutine(round1());
             }
         }

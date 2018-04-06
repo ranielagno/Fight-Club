@@ -18,20 +18,22 @@ public class FighterController : MonoBehaviour {
     public AudioClip[] audioClips;
     AudioSource audioSource;
 
-    private Vector3 playerPosition;
+    private Vector3 spawnPosition;
+    private Quaternion spawnRotation;
 
     private void Awake() {
         if(instance == null) {
             instance = this;
         }
+        spawnPosition = transform.position;
+        spawnRotation = transform.rotation;
     }
 
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        Debug.Log(audioClips.Length);
-        playerPosition = transform.position;
+        
         SetAllBoxColliders(false);
 	}
 	
@@ -139,12 +141,8 @@ public class FighterController : MonoBehaviour {
         playerHealthBar.value = 100;
         GameObject[] theClone = GameObject.FindGameObjectsWithTag("Player");
         Transform transform = theClone[2].GetComponent<Transform>();
-        Debug.Log(theClone[0]);
-        Debug.Log(theClone[1]);
-        Debug.Log(theClone[2]);
-        Debug.Log(theClone[3]);
-        transform.position = playerPosition;
-        transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+        transform.position = spawnPosition;
+        transform.rotation = spawnRotation;
         anim.SetTrigger("idle");
         anim.ResetTrigger("knockout");
         GameController.allowMovement = true;
